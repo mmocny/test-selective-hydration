@@ -1,31 +1,24 @@
-import ClientComponent from './ClientComponent'
-import { Suspense } from 'react'
-
+import Link from 'next/link'
 
 export default function Home() {
+  const links = [
+    "blocking-render-with-loading",
+    "blocking-render-without-loading",
+    "use-hook-with-loading",
+    "use-hook-without-loading",
+    "use-hook-variable-with-loading",
+    "useEffect-hook-with-loading",
+    "useEffect-hook-without-loading",
+  ];
   return (
     <>
-    
-    <h1>DON'T wrap in suspense</h1>
-      {[...Array(10)].map((e, i) =>
-        <ClientComponent num={i}></ClientComponent>
-      )}
-
-
-    <h1>Wrap ALL with a SINGLE suspense</h1>
-      <Suspense>
-      {[...Array(10)].map((e, i) =>
-        <ClientComponent num={10+i}></ClientComponent>
-      )}
-      </Suspense>
-      
-
-    <h1>Wrap EACH with its OWN suspense</h1>
-      {[...Array(10)].map((e, i) =>
-      <Suspense>
-        <ClientComponent num={20+i}></ClientComponent>
-      </Suspense>
-      )}
+      <ul>
+        {links.map(link => 
+          <li>
+            <Link key={link} href={link}>{link}</Link>
+          </li>
+        )}
+      </ul>
     </>
   )
 }
